@@ -15,6 +15,7 @@ plugins {
 checkstyle{
     version = "12.1.2"
     maxWarnings = 0
+    configFile = rootProject.file("app/checkstyle/checkstyle.xml")
 }
 repositories {
     // Use Maven Central for resolving dependencies.
