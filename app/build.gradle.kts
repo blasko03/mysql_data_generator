@@ -12,6 +12,10 @@ plugins {
     checkstyle
 }
 
+checkstyle{
+    version = "12.1.2"
+    maxWarnings = 0
+}
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
