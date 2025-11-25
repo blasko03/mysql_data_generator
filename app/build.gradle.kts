@@ -26,6 +26,7 @@ dependencies {
     // This dependency is used by the application.
     implementation(libs.guava)
     implementation("com.mysql:mysql-connector-j:9.5.0")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.20.1")
 }
 
 testing {
