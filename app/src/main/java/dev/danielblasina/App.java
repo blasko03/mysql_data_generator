@@ -4,21 +4,28 @@
 
 package dev.danielblasina;
 
+import dev.danielblasina.config.DBConfig;
+import dev.danielblasina.config.parsers.YamlParser;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.stream.IntStream;
 
 public class App {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException, URISyntaxException {
         var nRecords = Integer.parseInt(args[0]);
-        var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "password");
 
+        var dbConfig = DBConfig.parseFrom(new YamlParser());
+        var connection = DriverManager.getConnection(dbConfig.getUri().toString(), dbConfig.username(), dbConfig.password());
         connection.createStatement().executeUpdate("DROP TABLE IF EXISTS products");
         connection.createStatement().executeUpdate(
-            "CREATE TABLE products (\n" + "  product_id int(11) NOT NULL AUTO_INCREMENT,\n"
-                + "  product_name varchar(150) NOT NULL,\n"
-                + "  PRIMARY KEY (`product_id`)\n"
-                + ");");
+            """
+                CREATE TABLE products (
+                  product_id int(11) NOT NULL AUTO_INCREMENT,
+                  product_name varchar(150) NOT NULL,
+                  PRIMARY KEY (`product_id`)
+                );""");
 
         var range = IntStream.range(0, nRecords).iterator();
         while (range.next() != 0) {

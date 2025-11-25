@@ -1,0 +1,5 @@
+database: test
+hostname: localhost
+username: root
+password: password
+port:     3306
