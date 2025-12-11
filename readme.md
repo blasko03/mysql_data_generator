@@ -4,7 +4,7 @@ The purpose of this project is to have a tool for populating an empty database w
 
 ## Configuration
 
-Database connection params should be put in `config/database.yml`
+Database connection params should be put in `app/config/config.yml`
 
 ```
 database: <DB_NAME>
