@@ -29,7 +29,16 @@ public record Table(DBConfig dbConfig, String name) {
             conn.createStatement().executeUpdate(String.format("""
                 CREATE TABLE %s (
                       product_id int(11) NOT NULL AUTO_INCREMENT,
-                      product_name varchar(150) NOT NULL,
+                      data0 BLOB NOT NULL,
+                      data1 BLOB NOT NULL,
+                      data2 BLOB NOT NULL,
+                      data3 BLOB NOT NULL,
+                      data4 BLOB NOT NULL,
+                      data5 BLOB NOT NULL,
+                      data6 BLOB NOT NULL,
+                      data7 BLOB NOT NULL,
+                      data8 BLOB NOT NULL,
+                      data9 BLOB NOT NULL,
                       PRIMARY KEY (`product_id`)
                 )
                 """, this.tableName()));
@@ -40,7 +49,9 @@ public record Table(DBConfig dbConfig, String name) {
                   DECLARE p1 INT unsigned DEFAULT 0;
                   label1: LOOP
                     IF p1 < iter THEN
-                      INSERT INTO %s(product_name) VALUES('afsdfdf');
+                      INSERT INTO %s(data0, data1, data2, data3, data4, data5, data6, data7, data8, data9)
+                        VALUES(RANDOM_BYTES(1000), RANDOM_BYTES(1000), RANDOM_BYTES(1000), RANDOM_BYTES(1000), RANDOM_BYTES(1000),
+                               RANDOM_BYTES(1000), RANDOM_BYTES(1000), RANDOM_BYTES(1000), RANDOM_BYTES(1000), RANDOM_BYTES(1000));
                       SET p1 = p1 + 1;
                       ITERATE label1;
                     END IF;
